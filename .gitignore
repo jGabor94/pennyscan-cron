@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+*.log
+cron-errors.txt
+coverage/
+.DS_Store
+data/ibkr-borrow-fees.json
+data/large-and-mega-market-cap-tickers.json
+data/t212-instruments.json
+data/usa.txt

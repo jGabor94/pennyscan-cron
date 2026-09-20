@@ -1,0 +1,41 @@
+{
+  "name": "pennyscan-cron",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cron-alapú short squeeze és daily gainer scanner.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "dev:once": "tsx src/index.ts --once",
+    "dev:ibkr:once": "tsx src/index.ts --ibkr-once",
+    "dev:large-market-cap:once": "tsx src/index.ts --large-market-cap-once",
+    "dev:t212:once": "tsx src/index.ts --t212-once",
+    "debug:short-squeeze": "tsx src/runShortSqueezeFilter.ts",
+    "ibkr:borrow-fees": "tsx src/providers/IBKR/getIBKRborrowFees.ts --output data/ibkr-borrow-fees.json",
+    "ibkr:borrow-fees:print": "tsx src/providers/IBKR/getIBKRborrowFees.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "start:once": "node dist/index.js --once",
+    "start:ibkr:once": "node dist/index.js --ibkr-once",
+    "start:large-market-cap:once": "node dist/index.js --large-market-cap-once",
+    "start:t212:once": "node dist/index.js --t212-once",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "basic-ftp": "^6.2.1",
+    "dotenv": "^17.4.2",
+    "drizzle-kit": "^1.0.0-beta.15-859cf75",
+    "drizzle-orm": "^1.0.0-beta.15-859cf75",
+    "node-cron": "^4.6.0",
+    "postgres": "^3.4.9",
+    "yahoo-finance2": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}

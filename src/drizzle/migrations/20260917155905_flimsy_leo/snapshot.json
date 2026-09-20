@@ -1,0 +1,3162 @@
+{
+  "dialect": "postgres",
+  "id": "8c4b362c-9a05-465b-a597-cd5e6c6db68a",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "version": "8",
+  "ddl": [
+    {
+      "values": [
+        "evaluated",
+        "pending",
+        "unavailable"
+      ],
+      "name": "status",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "pending",
+        "running",
+        "completed",
+        "failed"
+      ],
+      "name": "reddit_daily_lounge_analysis_status",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "reddit-tip-evaluation-v2",
+        "reddit-tip-evaluation-v3"
+      ],
+      "name": "reddit_tip_evaluation_method_version",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "take-profit",
+        "stop-loss",
+        "ambiguous",
+        "neither"
+      ],
+      "name": "reddit_tip_price_strategy_outcome",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "same-day",
+        "next-day",
+        "next-trading-day",
+        "specific-date",
+        "multi-day",
+        "unspecified"
+      ],
+      "name": "reddit_tip_temporal_intent",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "queued",
+        "running",
+        "completed",
+        "partial",
+        "insufficient_data",
+        "failed"
+      ],
+      "name": "short_squeeze_analysis_status",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "filing",
+        "issuer_release",
+        "regulatory",
+        "news",
+        "deterministic"
+      ],
+      "name": "short_squeeze_evidence_type",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "instrument",
+        "market",
+        "short_positioning",
+        "borrow",
+        "settlement",
+        "options",
+        "fundamentals",
+        "dilution",
+        "catalyst"
+      ],
+      "name": "short_squeeze_fact_domain",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "verified",
+        "estimated",
+        "stale",
+        "conflicted",
+        "missing"
+      ],
+      "name": "short_squeeze_fact_quality",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "queued",
+        "collecting_market_data",
+        "collecting_regulatory_data",
+        "extracting_sec_evidence",
+        "calculating_scores",
+        "saving_report",
+        "completed"
+      ],
+      "name": "short_squeeze_progress_stage",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "queued",
+        "identifying_instrument",
+        "collecting_market_data",
+        "collecting_regulatory_data",
+        "normalizing_data",
+        "extracting_evidence",
+        "calculating_metrics",
+        "assembling_fact_snapshot",
+        "analyzing_bull",
+        "analyzing_bear",
+        "validating_arguments",
+        "judging",
+        "validating_report",
+        "saving_report",
+        "completed"
+      ],
+      "name": "investment_research_progress_stage",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "queued",
+        "running",
+        "completed",
+        "partial",
+        "insufficient_data",
+        "failed"
+      ],
+      "name": "investment_research_status",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "account",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "investment_research_runs",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "notifications",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "reddit_daily_lounges",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "reddit_recognized_tips",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "reddit_tip_price_evaluations",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "reddit_users",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "short_squeeze_analysis_evidence",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "short_squeeze_analysis_facts",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "short_squeeze_analysis_runs",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "trading_watchlist_items",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "users",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "notifications"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "userId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_users"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "varchar(6)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "ticker",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "notifications"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "analysis_run_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "username",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "requested_by_user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "requested_by_user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "reddit_user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "recognized_tip_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "username",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_users"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "analysis_run_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "type": "varchar(10)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "lounge_date",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "varchar(20)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "external_reddit_post_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "varchar(20)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "external_reddit_comment_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "varchar(20)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "requested_ticker",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "normalized_username",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_users"
+    },
+    {
+      "type": "varchar(120)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "fact_key",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "provider",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "short_squeeze_evidence_type",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "evidence_type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "varchar(32)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "ticker",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "change_percent",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "notifications"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "''",
+      "generated": null,
+      "identity": null,
+      "name": "password",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar(20)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "requested_ticker",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "email",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "providerAccountId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_users"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "notifications"
+    },
+    {
+      "type": "varchar(20)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "normalized_ticker",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "varchar(10)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "ticker",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "short_squeeze_fact_domain",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "domain",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "varchar(120)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "fact_type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "varchar(20)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "normalized_ticker",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "reddit_daily_lounge_analysis_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'pending'",
+      "generated": null,
+      "identity": null,
+      "name": "analysis_status",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "varchar(64)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "content_hash",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "analysis_started_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "issuer_name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_users"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "''",
+      "generated": null,
+      "identity": null,
+      "name": "name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "title",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "varchar(80)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "provider",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "notifications"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "issuer_name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "refresh_token",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'pending'",
+      "generated": null,
+      "identity": null,
+      "name": "status",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "varchar(10)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "cik",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "access_token",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "timestamp",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "emailVerified",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "analysis_completed_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "summary",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "varchar(80)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "source_type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "varchar(10)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "cik",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "exchange",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "expires_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "source_url",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "analysis_error_code",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "exchange",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 1,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "roles",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "details",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "tip_recorded_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "reddit_tip_price_strategy_outcome",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "strategy_outcome",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "source_url",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "reddit_tip_temporal_intent",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "temporal_intent",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "''",
+      "generated": null,
+      "identity": null,
+      "name": "image",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "source_external_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "workflow_run_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "token_type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "instrument_type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "value_type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "source_external_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "varchar(10)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "target_market_date",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "varchar",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'light'",
+      "generated": null,
+      "identity": null,
+      "name": "theme",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "scope",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "short_squeeze_analysis_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'queued'",
+      "generated": null,
+      "identity": null,
+      "name": "status",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "investment_research_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'queued'",
+      "generated": null,
+      "identity": null,
+      "name": "status",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "value",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "id_token",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "investment_research_progress_stage",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'queued'",
+      "generated": null,
+      "identity": null,
+      "name": "progress_stage",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "source_form",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "workflow_run_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "unit",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar(128)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idempotency_key",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "varchar(128)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idempotency_key",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "session_state",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "type": "varchar(160)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "source_section",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "reddit_tip_evaluation_method_version",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "evaluation_method_version",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "schema_version",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "numeric(12,6)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "entry_price",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "schema_version",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "effective_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "effective_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "varchar(80)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "method_version",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "varchar(80)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "method_version",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "published_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "numeric(12,6)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "highest_price",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "published_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "numeric(12,6)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "lowest_price",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "analysis_as_of",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "observed_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "varchar(800)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "evidence_snippet",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "analysis_as_of",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "started_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "confidence",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "short_squeeze_fact_quality",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "quality",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "started_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "contradiction",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "completed_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "completed_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "conflict",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "numeric(12,6)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "period_end_price",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "adjustment_state",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "period_end_price_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'[]'",
+      "generated": null,
+      "identity": null,
+      "name": "contradicts_evidence_ids",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "potential_score",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "facts_snapshot",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "bull_analysis",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "varchar(40)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "potential_category",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "varchar(64)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "raw_hash",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "varchar(80)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "extraction_method",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "confidence_score",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "bear_analysis",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "varchar(120)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "model_version",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "fundamental_quality_score",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "judge_analysis",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "supply_risk_score",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "start_price_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "result",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "error_code",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "result",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "error_code",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "error_message",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "error_message",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "varchar(10)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "target_market_date",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "type": "short_squeeze_progress_stage",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'queued'",
+      "generated": null,
+      "identity": null,
+      "name": "progress_stage",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "requested_by_user_id"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "created_at"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "investment_research_runs_owner_created_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "status"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "created_at"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "investment_research_runs_status_created_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "normalized_ticker"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "created_at"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "investment_research_runs_ticker_created_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "external_reddit_comment_id"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "reddit_recognized_tips_external_comment_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "reddit_user_id"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "reddit_recognized_tips_reddit_user_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "status"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "reddit_tip_price_evaluations_status_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "analysis_run_id"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "evidence_type"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "short_squeeze_evidence_run_type_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "source_external_id"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "short_squeeze_evidence_source_external_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "provider"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "effective_at"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "short_squeeze_facts_provider_effective_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "analysis_run_id"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "fact_key"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "short_squeeze_facts_run_key_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "requested_by_user_id"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "created_at"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "short_squeeze_runs_owner_created_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "status"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "created_at"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "short_squeeze_runs_status_created_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "normalized_ticker"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "created_at"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "short_squeeze_runs_ticker_created_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "user_id"
+        },
+        {
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null,
+          "isExpression": false,
+          "value": "created_at"
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "trading_watchlist_items_user_created_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "userId"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "account_userId_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "reddit_user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "reddit_users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "name": "reddit_recognized_tips_reddit_user_id_reddit_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "recognized_tip_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "reddit_recognized_tips",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "reddit_tip_price_evaluations_SJstlt88N6CW_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "analysis_run_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "short_squeeze_analysis_runs",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "short_squeeze_analysis_evidence_bFsy96jHlZx7_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "analysis_run_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "short_squeeze_analysis_runs",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "short_squeeze_analysis_facts_HnCww9PqfAsP_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "requested_by_user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "short_squeeze_analysis_runs_requested_by_user_id_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "requested_by_user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "investment_research_runs_requested_by_user_id_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "trading_watchlist_items_user_id_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "columns": [
+        "provider",
+        "providerAccountId"
+      ],
+      "nameExplicit": true,
+      "name": "account_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "account"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "users_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "reddit_recognized_tips_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "reddit_tip_price_evaluations_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "reddit_users_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "reddit_users"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "reddit_daily_lounges_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "short_squeeze_analysis_evidence_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "short_squeeze_analysis_facts_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "short_squeeze_analysis_runs_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "investment_research_runs_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "trading_watchlist_items_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": true,
+      "name": "notifications_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "notifications"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "email"
+      ],
+      "nullsNotDistinct": false,
+      "name": "users_email_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "external_reddit_comment_id",
+        "ticker"
+      ],
+      "nullsNotDistinct": false,
+      "name": "reddit_recognized_tips_comment_ticker_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "reddit_recognized_tips"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "recognized_tip_id"
+      ],
+      "nullsNotDistinct": false,
+      "name": "reddit_tip_price_evaluations_tip_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "reddit_tip_price_evaluations"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "normalized_username"
+      ],
+      "nullsNotDistinct": false,
+      "name": "reddit_users_normalized_username_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "reddit_users"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "external_reddit_post_id"
+      ],
+      "nullsNotDistinct": false,
+      "name": "reddit_daily_lounges_external_post_id_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "lounge_date"
+      ],
+      "nullsNotDistinct": false,
+      "name": "reddit_daily_lounges_lounge_date_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "reddit_daily_lounges"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "analysis_run_id",
+        "source_external_id",
+        "fact_type"
+      ],
+      "nullsNotDistinct": false,
+      "name": "short_squeeze_evidence_run_source_fact_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "analysis_run_id",
+        "fact_key",
+        "provider",
+        "effective_at"
+      ],
+      "nullsNotDistinct": false,
+      "name": "short_squeeze_facts_run_key_provider_effective_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "short_squeeze_analysis_facts"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "requested_by_user_id",
+        "idempotency_key"
+      ],
+      "nullsNotDistinct": false,
+      "name": "short_squeeze_runs_user_idempotency_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "requested_by_user_id",
+        "idempotency_key"
+      ],
+      "nullsNotDistinct": false,
+      "name": "investment_research_runs_user_idempotency_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "investment_research_runs"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "user_id",
+        "ticker"
+      ],
+      "nullsNotDistinct": false,
+      "name": "trading_watchlist_items_user_ticker_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "trading_watchlist_items"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        "ticker"
+      ],
+      "nullsNotDistinct": false,
+      "name": "notifications_ticker_key",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "notifications"
+    },
+    {
+      "value": "((confidence >= 0) AND (confidence <= 100))",
+      "name": "short_squeeze_evidence_confidence_check",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_evidence"
+    },
+    {
+      "value": "((confidence_score IS NULL) OR ((confidence_score >= 0) AND (confidence_score <= 100)))",
+      "name": "short_squeeze_runs_confidence_score_check",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "value": "((fundamental_quality_score IS NULL) OR ((fundamental_quality_score >= 0) AND (fundamental_quality_score <= 100)))",
+      "name": "short_squeeze_runs_fundamental_quality_score_check",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "value": "((potential_score IS NULL) OR ((potential_score >= 0) AND (potential_score <= 100)))",
+      "name": "short_squeeze_runs_potential_score_check",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "value": "((supply_risk_score IS NULL) OR ((supply_risk_score >= 0) AND (supply_risk_score <= 100)))",
+      "name": "short_squeeze_runs_supply_risk_score_check",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "short_squeeze_analysis_runs"
+    },
+    {
+      "value": "((error_message IS NULL) OR (char_length(error_message) <= 500))",
+      "name": "investment_research_runs_error_message_length_check",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "investment_research_runs"
+    }
+  ],
+  "renames": []
+}
