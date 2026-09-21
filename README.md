@@ -17,7 +17,7 @@ A fő scanner:
 
 - legalább 20%-os emelkedésnél, ha a részvény átmegy a short squeeze szűrésen;
 - legalább 40%-os emelkedésnél short squeeze minősítéstől függetlenül;
-- ugyanarról a tickerről ismét csak a következő riasztási szint elérésekor: 20%, 50%, 100%, majd további 100 százalékpontos lépésekben.
+- ugyanarról a tickerről ismét csak a következő riasztási szint elérésekor: 40%, 100%, majd további 100 százalékpontos lépésekben.
 
 ## Short squeeze feltételek
 
