@@ -1,5 +1,4 @@
 import { eq } from "drizzle-orm/sql/expressions/index";
-import { changePercentThreshold, regularChangePercentThreshold } from "../config.js";
 import { db } from "../drizzle/db.js";
 import { notifications } from "../drizzle/migrations/schema.js";
 import { getTodayNtfy } from "../drizzle/queries/getTodayNtfy.js";
@@ -27,8 +26,6 @@ export async function dailyGainerJob() {
 
 
 
-  //console.log(dailyGainerQuotes.map(formatDailyGainer).sort((a, b) => b.changePercent - a.changePercent))
-
   const notificationsResult = await getTodayNtfy()
   const notifyPromises = dailyGainerQuotes.map((gainerQuote) => (async () => {
 
@@ -36,36 +33,32 @@ export async function dailyGainerJob() {
     const isShortSqueezePotential = shortSqueezeQuotes.some((quote) => quote.symbol === gainerQuote.symbol);
     const gainer = formatDailyGainer(gainerQuote);
 
-    if (
-      (isShortSqueezePotential && gainer.changePercent >= regularChangePercentThreshold) ||
-      gainer.changePercent >= changePercentThreshold
-    ) {
 
-      if (notification) {
-        const { nextAlertLevel } = getAlertLevel(notification.changePercent);
-        if (gainer.changePercent >= nextAlertLevel) {
-          await db.transaction(async (tx) => {
-            await tx.update(notifications).set({
-              changePercent: Math.round(gainer.changePercent),
-            }).where(eq(notifications.id, notification.id));
-
-            await ntfyPush(gainer, isShortSqueezePotential);
-          })
-
-        }
-
-      } else {
+    if (notification) {
+      const { nextAlertLevel } = getAlertLevel(notification.changePercent);
+      if (gainer.changePercent >= nextAlertLevel) {
         await db.transaction(async (tx) => {
-          await tx.insert(notifications).values({
-            ticker: gainer.ticker,
+          await tx.update(notifications).set({
             changePercent: Math.round(gainer.changePercent),
-          })
+          }).where(eq(notifications.id, notification.id));
+
           await ntfyPush(gainer, isShortSqueezePotential);
         })
 
       }
 
+    } else {
+      await db.transaction(async (tx) => {
+        await tx.insert(notifications).values({
+          ticker: gainer.ticker,
+          changePercent: Math.round(gainer.changePercent),
+        })
+        await ntfyPush(gainer, isShortSqueezePotential);
+      })
+
     }
+
+
   })())
 
   await Promise.all(notifyPromises);

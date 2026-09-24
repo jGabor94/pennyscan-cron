@@ -1,6 +1,5 @@
 export const quoteBatchSize = 100;
-export const changePercentThreshold = 40;
-export const regularChangePercentThreshold = 20;
+export const changePercentThreshold = 20;
 
 export const shortSqueezeQuoteFilters = {
   maximumMarketCap: 10_000_000_000,
@@ -14,7 +13,7 @@ export const shortSqueezeQuoteFilters = {
 } as const;
 
 export const cronExpressions = {
-  dailyGainerJob: "*/5 4-19 * * 1-5",
+  dailyGainerJob: "*/4 4-19 * * 1-5",
   T212ScannerJob: "0 0 * * 1-5",
   IBKRBorrowFeesJob: "*/15 * * * 1-5",
   saveLargeMarketCapTickersJob: "15 0 * * 1",

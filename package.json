@@ -25,6 +25,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "ai": "^7.0.109",
     "basic-ftp": "^6.2.1",
     "dotenv": "^17.4.2",
     "drizzle-kit": "^1.0.0-beta.15-859cf75",

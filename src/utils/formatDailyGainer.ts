@@ -5,6 +5,7 @@ export interface DailyGainer {
   changePercent: number;
   price: number;
   volume: number;
+  relativeVolume: number
 }
 
 export const getCurrentPrice = (quote: Quote): number | undefined => {
@@ -62,5 +63,6 @@ export const formatDailyGainer = (quote: Quote): DailyGainer => {
     changePercent,
     price,
     volume: quote.regularMarketVolume ?? 0,
+    relativeVolume: quote.regularMarketVolume / quote.averageDailyVolume10Day
   };
 };

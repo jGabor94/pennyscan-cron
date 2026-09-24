@@ -1,11 +1,7 @@
 import { requestTimeouts } from "../config.js";
+import { DailyGainer } from "../utils/formatDailyGainer.js";
 
-export const ntfyPush = async (gainer: {
-    ticker: string;
-    changePercent: number;
-    price: number;
-    volume: number;
-}, isShortSqueezePotential: boolean | undefined = false) => {
+export const ntfyPush = async (gainer: DailyGainer, isShortSqueezePotential: boolean | undefined = false) => {
 
     if (!process.env.NTFY_TOPIC) {
         throw new Error("NTFY_TOPIC környezeti változó nincs beállítva.");
@@ -23,7 +19,9 @@ export const ntfyPush = async (gainer: {
         body: `
         ${isShortSqueezePotential ? "Short Squeeze Potential!" : ""}
         Ár: $${gainer.price}
-Volume: ${gainer.volume.toLocaleString()}`,
+        RVOL: ${gainer.relativeVolume.toFixed(2)}x
+        Volume: ${gainer.volume.toLocaleString()}
+`,
     });
 
     if (!response.ok) {
